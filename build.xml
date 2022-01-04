@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<project name="cheetah-agent-svc" default="all">
+	
+	<!-- Execute first! : mvn install -DskipTests dependency:copy-dependencies -->
+	
+	<target name="init">
+		<mkdir dir="dist" />
+		<mkdir dir="dist/bin" />
+		<mkdir dir="dist/lib" />
+		<mkdir dir="dist/lib/dependency" />
+	</target>
+
+	<target name="clean">
+		<delete dir="dist" />
+	</target>
+
+	<target name="all" depends="init">
+		<copy overwrite="yes" file="target/cheetah-agent-svc-0.1.jar" tofile="dist/lib/cheetah-agent-svc-0.1.jar" />
+		<copy todir="dist/lib/dependency">
+			<fileset dir="target/dependency" includes="**" />
+		</copy>
+		<copy todir="dist/lib">
+			<fileset dir="lib" includes="**" />
+		</copy>
+		<copy todir="dist/bin">
+			<fileset dir="bin" includes="**" />
+		</copy>
+		<copy todir="dist/setup">
+			<fileset dir="setup" includes="**" />
+		</copy>
+		<copy todir="dist/setup_win">
+			<fileset dir="setup_win" includes="**" />
+		</copy>
+	</target>
+</project>
